@@ -42,7 +42,7 @@ export default function Preloader({ onComplete }) {
 
   return (
     <div 
-      className="preloader-container fixed inset-0 bg-space-black z-[99999] flex flex-col items-center justify-center"
+      className="preloader-container fixed inset-0 bg-[var(--color-space-black)] z-[99999] flex flex-col items-center justify-center"
       style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
     >
       <div className="preloader-content flex flex-col items-center max-w-xs w-full px-4">
@@ -57,7 +57,7 @@ export default function Preloader({ onComplete }) {
         </div>
         
         {/* Progress Bar Container */}
-        <div className="w-full h-[2px] bg-white/5 rounded-full overflow-hidden relative">
+        <div className="w-full h-[2px] bg-[var(--border-subtle)] rounded-full overflow-hidden relative">
           <div 
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple shadow-[0_0_12px_#06B6D4] transition-all duration-75 ease-out"
             style={{ width: `${progress}%` }}

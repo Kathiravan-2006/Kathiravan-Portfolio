@@ -1,17 +1,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+:root, [data-theme="dark"] {
+  --color-space-black: #050816;
+  --color-surface-dark: #111827;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #A1A1AA;
+  
+  --bg-main: #050816;
+  --bg-card: rgba(17, 24, 39, 0.65);
+  --bg-card-light: rgba(255, 255, 255, 0.03);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --scrollbar-track: #050816;
+  --scrollbar-thumb: rgba(139, 92, 246, 0.25);
+  --grid-pattern: rgba(255, 255, 255, 0.06);
+  --nav-bg: rgba(5, 8, 22, 0.75);
+  --drawer-bg: rgba(5, 8, 22, 0.95);
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --modal-overlay: rgba(5, 8, 22, 0.90);
+  --icon-box-bg: #111827;
+}
+
+[data-theme="light"] {
+  --color-space-black: #f8fafc;
+  --color-surface-dark: #ffffff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+
+  --bg-main: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-card-light: rgba(241, 245, 249, 0.7);
+  --border-glass: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --shadow-glass: 0 8px 24px 0 rgba(15, 23, 42, 0.08);
+  --scrollbar-track: #f1f5f9;
+  --scrollbar-thumb: rgba(139, 92, 246, 0.35);
+  --grid-pattern: rgba(15, 23, 42, 0.05);
+  --nav-bg: rgba(248, 250, 252, 0.85);
+  --drawer-bg: rgba(248, 250, 252, 0.95);
+  --input-bg: rgba(241, 245, 249, 0.9);
+  --input-border: rgba(203, 213, 225, 0.8);
+  --modal-overlay: rgba(15, 23, 42, 0.70);
+  --icon-box-bg: #f1f5f9;
+}
+
 @theme {
   --font-heading: 'Outfit', sans-serif;
   --font-sans: 'Inter', sans-serif;
   
-  --color-space-black: #050816;
-  --color-surface-dark: #111827;
+  --color-space-black: var(--color-space-black);
+  --color-surface-dark: var(--color-surface-dark);
   --color-accent-blue: #3B82F6;
   --color-accent-cyan: #06B6D4;
   --color-accent-purple: #8B5CF6;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #A1A1AA;
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
   
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-glow: pulse-glow 3s infinite;
@@ -40,6 +86,7 @@ html {
   background-color: var(--color-space-black);
   color: var(--color-text-primary);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -48,11 +95,12 @@ body {
   background-color: var(--color-space-black);
   color: var(--color-text-primary);
   min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
   background-color: rgba(6, 182, 212, 0.3);
-  color: #ffffff;
+  color: var(--color-text-primary);
 }
 
 /* Scrollbar Customization */
@@ -61,13 +109,13 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #050816;
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.25);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
   transition: all 0.3s ease;
 }
 
@@ -77,18 +125,20 @@ body {
 
 /* Utility Classes */
 .glass-panel {
-  background: rgba(17, 24, 39, 0.65);
+  background: var(--bg-card);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid var(--border-glass);
+  box-shadow: var(--shadow-glass);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-panel-light {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--bg-card-light);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .text-gradient {
@@ -119,6 +169,7 @@ body {
   background: linear-gradient(135deg, rgba(59, 130, 246, 0), rgba(6, 182, 212, 0), rgba(139, 92, 246, 0));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   transition: all 0.5s ease;

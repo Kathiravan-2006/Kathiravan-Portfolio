@@ -24,15 +24,15 @@ export default function GithubSection() {
   const getLevelColor = (level) => {
     switch (level) {
       case 1:
-        return 'bg-cyan-950/60 border border-cyan-900/30';
+        return 'bg-cyan-200 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-900/30';
       case 2:
-        return 'bg-cyan-800/50 border border-cyan-700/30';
+        return 'bg-cyan-300 dark:bg-cyan-800/50 border border-cyan-400 dark:border-cyan-700/30';
       case 3:
-        return 'bg-cyan-600/70 border border-cyan-500/20';
+        return 'bg-cyan-500 dark:bg-cyan-600/70 border border-cyan-600 dark:border-cyan-500/20';
       case 4:
-        return 'bg-cyan-400 shadow-[0_0_8px_#06B6D4]';
+        return 'bg-cyan-600 dark:bg-cyan-400 shadow-[0_0_8px_#06B6D4]';
       default:
-        return 'bg-white/5';
+        return 'bg-[var(--border-subtle)]';
     }
   };
 
@@ -50,7 +50,7 @@ export default function GithubSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4"
+            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4 text-text-primary"
           >
             GitHub <span className="text-gradient">Activity</span>
           </motion.h2>
@@ -66,16 +66,16 @@ export default function GithubSection() {
         </div>
 
         {/* GitHub Terminal Board */}
-        <div className="glass-panel rounded-3xl border border-white/10 overflow-hidden relative mb-12">
+        <div className="glass-panel rounded-3xl border border-[var(--border-glass)] overflow-hidden relative mb-12">
           {/* Header Bar */}
-          <div className="bg-white/[0.03] border-b border-white/5 px-6 py-4 flex items-center justify-between">
+          <div className="glass-panel-light border-b border-[var(--border-subtle)] px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <FiGithub className="w-5 h-5 text-accent-cyan" />
               <a
                 href={githubData.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs text-white tracking-wider hover:text-accent-cyan transition-colors duration-300"
+                className="font-mono text-xs text-text-primary tracking-wider hover:text-accent-cyan transition-colors duration-300"
               >
                 github.com/{githubData.username}
               </a>
@@ -91,8 +91,8 @@ export default function GithubSection() {
             {/* Stats Overview */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
               {githubData.stats.map((st) => (
-                <div key={st.label} className="glass-panel-light p-4 rounded-xl border border-white/5">
-                  <span className="block font-heading font-black text-2xl text-white mb-1">{st.value}</span>
+                <div key={st.label} className="glass-panel-light p-4 rounded-xl border border-[var(--border-subtle)]">
+                  <span className="block font-heading font-black text-2xl text-text-primary mb-1">{st.value}</span>
                   <span className="block font-sans text-[10px] text-text-secondary uppercase tracking-widest">
                     {st.label}
                   </span>
@@ -100,10 +100,10 @@ export default function GithubSection() {
               ))}
             </div>
 
-            {/* Contribution Graph Graph */}
+            {/* Contribution Calendar Graph */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-heading font-bold text-xs text-white uppercase tracking-wider flex items-center gap-2">
+                <h3 className="font-heading font-bold text-xs text-text-primary uppercase tracking-wider flex items-center gap-2">
                   <FiActivity className="w-4 h-4 text-accent-cyan" />
                   Contributions Calendar
                 </h3>
@@ -113,7 +113,7 @@ export default function GithubSection() {
               </div>
 
               {/* Grid scroll wrapper */}
-              <div className="overflow-x-auto no-scrollbar border border-white/5 rounded-xl p-4 bg-white/[0.01]">
+              <div className="overflow-x-auto no-scrollbar border border-[var(--border-subtle)] rounded-xl p-4 glass-panel-light">
                 <div 
                   className="grid grid-flow-col gap-1.5 select-none"
                   style={{ gridTemplateRows: 'repeat(7, minmax(0, 1fr))', width: 'max-content' }}
@@ -131,18 +131,18 @@ export default function GithubSection() {
               {/* Legend */}
               <div className="flex justify-end gap-1.5 items-center mt-3 text-[9px] text-text-secondary font-mono">
                 <span>Less</span>
-                <div className="w-[8px] h-[8px] rounded-[2px] bg-white/5" />
-                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-950/60 border border-cyan-900/30" />
-                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-800/50 border border-cyan-700/30" />
-                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-600/70 border border-cyan-500/20" />
-                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-400" />
+                <div className="w-[8px] h-[8px] rounded-[2px] bg-[var(--border-subtle)]" />
+                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-200 dark:bg-cyan-950/60 border border-cyan-300 dark:border-cyan-900/30" />
+                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-300 dark:bg-cyan-800/50 border border-cyan-400 dark:border-cyan-700/30" />
+                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-500 dark:bg-cyan-600/70 border border-cyan-600 dark:border-cyan-500/20" />
+                <div className="w-[8px] h-[8px] rounded-[2px] bg-cyan-600 dark:bg-cyan-400" />
                 <span>More</span>
               </div>
             </div>
 
             {/* Pinned Repos Grid */}
             <div>
-              <h3 className="font-heading font-bold text-xs text-white uppercase tracking-wider flex items-center gap-2 mb-4">
+              <h3 className="font-heading font-bold text-xs text-text-primary uppercase tracking-wider flex items-center gap-2 mb-4">
                 <FiBookOpen className="w-4 h-4 text-accent-purple" />
                 Pinned Repositories
               </h3>
@@ -154,11 +154,11 @@ export default function GithubSection() {
                     href={githubData.profileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="glass-panel-light p-5 rounded-xl border border-white/5 hover:border-accent-cyan/30 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between cursor-none clickable group"
+                    className="glass-panel-light p-5 rounded-xl border border-[var(--border-subtle)] hover:border-accent-cyan/30 hover:bg-accent-cyan/5 transition-all duration-300 flex flex-col justify-between cursor-none clickable group"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="font-mono text-sm font-bold text-white group-hover:text-accent-cyan transition-colors duration-300">
+                        <span className="font-mono text-sm font-bold text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
                           {repo.name}
                         </span>
                         <FiGithub className="w-4 h-4 text-text-secondary group-hover:text-accent-cyan transition-colors duration-300" />
@@ -168,7 +168,7 @@ export default function GithubSection() {
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between font-mono text-[10px] text-text-secondary border-t border-white/5 pt-3">
+                    <div className="flex items-center justify-between font-mono text-[10px] text-text-secondary border-t border-[var(--border-subtle)] pt-3">
                       <div className="flex items-center gap-1.5">
                         <span className={`w-2.5 h-2.5 rounded-full ${repo.langColor}`} />
                         <span>{repo.lang}</span>
@@ -194,4 +194,3 @@ export default function GithubSection() {
     </section>
   );
 }
-

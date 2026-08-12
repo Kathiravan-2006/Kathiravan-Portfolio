@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative border-t border-white/5 bg-space-black py-12 overflow-hidden z-10 select-none">
+    <footer className="relative border-t border-[var(--border-subtle)] bg-[var(--color-space-black)] py-12 overflow-hidden z-10 select-none">
       {/* Subtle bottom glows */}
       <div className="absolute bottom-0 left-[20%] w-[300px] h-[100px] bg-accent-blue/5 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 right-[20%] w-[300px] h-[100px] bg-accent-purple/5 rounded-full blur-[80px] pointer-events-none" />
@@ -56,11 +56,10 @@ export default function Footer() {
         </div>
 
         {/* Copyright notice */}
-        <div className="text-center sm:text-right font-mono text-[10px] text-text-secondary/60">
+        <div className="text-center sm:text-right font-mono text-[10px] text-text-secondary">
           &copy; {currentYear} &bull; All rights reserved.
         </div>
       </div>
     </footer>
   );
 }
-

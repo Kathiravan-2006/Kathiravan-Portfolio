@@ -17,7 +17,7 @@ export default function Experience() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4"
+            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4 text-text-primary"
           >
             Professional <span className="text-gradient">Experience</span>
           </motion.h2>
@@ -50,7 +50,7 @@ export default function Experience() {
                 >
                   {/* Timeline Dot Indicator */}
                   <div
-                    className={`absolute left-4 md:left-1/2 w-4 h-4 rounded-full ${exp.dotBg} border-2 border-space-black -translate-x-1/2 top-6 z-10`}
+                    className={`absolute left-4 md:left-1/2 w-4 h-4 rounded-full ${exp.dotBg} border-2 border-[var(--color-space-black)] -translate-x-1/2 top-6 z-10`}
                   />
 
                   {/* Empty space filler for desktop spacing alignment */}
@@ -62,14 +62,14 @@ export default function Experience() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-100px' }}
                     transition={{ duration: 0.7, type: 'spring' }}
-                    className={`w-full md:w-[45%] ml-10 md:ml-0 glass-panel p-6 md:p-8 rounded-2xl border border-white/5 glow-card ${exp.color} relative overflow-hidden`}
+                    className={`w-full md:w-[45%] ml-10 md:ml-0 glass-panel p-6 md:p-8 rounded-2xl border border-[var(--border-subtle)] glow-card ${exp.color} relative overflow-hidden`}
                   >
                     <div className="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple" />
                     
                     {/* Header */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                       <div>
-                        <h3 className="font-heading font-bold text-base md:text-lg text-white group-hover:text-accent-cyan transition-colors duration-300">
+                        <h3 className="font-heading font-bold text-base md:text-lg text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
                           {exp.role}
                         </h3>
                         <p className="font-sans text-xs text-accent-cyan font-medium">
@@ -110,4 +110,3 @@ export default function Experience() {
     </section>
   );
 }
-

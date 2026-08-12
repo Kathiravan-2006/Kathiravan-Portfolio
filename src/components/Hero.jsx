@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiGithub, FiLinkedin, FiMail, FiEye, FiDownload } from 'react-icons/fi';
 import { personalInfo } from '../data/portfolioData';
 
 export default function Hero() {
@@ -30,7 +30,7 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden"
     >
       {/* Grid Pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(var(--grid-pattern)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
 
       {/* Radial glow layer for Apple/Stripe aesthetic */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[600px] lg:w-[800px] h-[350px] md:h-[600px] lg:h-[800px] bg-gradient-to-r from-accent-blue/10 via-accent-cyan/10 to-accent-purple/10 rounded-full blur-[100px] md:blur-[160px] pointer-events-none z-0" />
@@ -51,7 +51,7 @@ export default function Hero() {
           <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple opacity-70 blur-[3px] animate-border-glow pointer-events-none" />
 
           {/* Softly rounded circular glass frame container */}
-          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full p-2 md:p-2.5 glass-panel border border-white/20 shadow-[0_0_40px_rgba(6,182,212,0.25)] flex items-center justify-center overflow-hidden group hover:shadow-[0_0_60px_rgba(139,92,246,0.35)] transition-all duration-500">
+          <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full p-2 md:p-2.5 glass-panel border border-[var(--border-glass)] shadow-[0_0_40px_rgba(6,182,212,0.25)] flex items-center justify-center overflow-hidden group hover:shadow-[0_0_60px_rgba(139,92,246,0.35)] transition-all duration-500">
             {/* JPG Profile Photo with object-fit: cover */}
             <img
               src={personalInfo.profileImage}
@@ -60,7 +60,7 @@ export default function Hero() {
               loading="eager"
               fetchPriority="high"
             />
-            {/* Natural gradient overlay tint to blend seamlessly with dark background */}
+            {/* Natural gradient overlay tint to blend seamlessly with background */}
             <div className="absolute inset-0 rounded-full bg-gradient-to-t from-space-black/35 via-transparent to-accent-cyan/10 pointer-events-none transition-opacity duration-500 group-hover:opacity-70" />
           </div>
         </motion.div>
@@ -83,7 +83,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="font-heading font-black text-4xl sm:text-5xl md:text-6xl lg:text-[3.25rem] xl:text-7xl tracking-tight leading-tight mb-6"
+            className="font-heading font-black text-4xl sm:text-5xl md:text-6xl lg:text-[3.25rem] xl:text-7xl tracking-tight leading-tight mb-6 text-text-primary"
           >
             Hi, I'm <span className="text-gradient whitespace-nowrap">{personalInfo.name}</span>
           </motion.h1>
@@ -119,26 +119,39 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.45 }}
-            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-12"
+            className="flex flex-col sm:flex-row flex-wrap gap-4 w-full sm:w-auto mb-12"
           >
             <button
               onClick={() => handleScrollTo('#projects')}
-              className="px-8 py-3.5 rounded-full bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple text-white font-semibold text-sm transition-all duration-300 shadow-[0_4px_20px_rgba(6,182,212,0.25)] hover:shadow-[0_4px_30px_rgba(139,92,246,0.45)] hover:scale-105 active:scale-95 cursor-none clickable"
+              className="px-6 py-3.5 rounded-full bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple text-white font-semibold text-sm transition-all duration-300 shadow-[0_4px_20px_rgba(6,182,212,0.25)] hover:shadow-[0_4px_30px_rgba(139,92,246,0.45)] hover:scale-105 active:scale-95 cursor-none clickable"
             >
               View Projects
             </button>
             
             <a
               href={personalInfo.resumeUrl}
-              download
-              className="px-8 py-3.5 rounded-full glass-panel border border-white/10 hover:border-accent-cyan/30 text-white font-semibold text-sm transition-all duration-300 hover:bg-white/5 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 cursor-none clickable"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3.5 rounded-full glass-panel border border-[var(--border-glass)] hover:border-accent-cyan/30 text-text-primary font-semibold text-sm transition-all duration-300 hover:bg-accent-cyan/5 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 cursor-none clickable"
+              title="View Resume in Browser"
             >
+              <FiEye className="w-4 h-4 text-accent-cyan" />
+              View Resume
+            </a>
+
+            <a
+              href={personalInfo.resumeUrl}
+              download="Kathiravan_SP_Resume.pdf"
+              className="px-6 py-3.5 rounded-full glass-panel border border-[var(--border-glass)] hover:border-accent-cyan/30 text-text-primary font-semibold text-sm transition-all duration-300 hover:bg-accent-cyan/5 flex items-center justify-center gap-2 hover:scale-105 active:scale-95 cursor-none clickable"
+              title="Download Resume PDF"
+            >
+              <FiDownload className="w-4 h-4 text-accent-purple" />
               Download Resume
             </a>
 
             <button
               onClick={() => handleScrollTo('#contact')}
-              className="px-8 py-3.5 rounded-full bg-white/5 border border-white/5 hover:border-accent-purple/35 text-text-secondary hover:text-white font-semibold text-sm transition-all duration-300 hover:bg-white/10 hover:scale-105 active:scale-95 cursor-none clickable"
+              className="px-6 py-3.5 rounded-full glass-panel-light border border-[var(--border-subtle)] hover:border-accent-purple/35 text-text-secondary hover:text-text-primary font-semibold text-sm transition-all duration-300 hover:scale-105 active:scale-95 cursor-none clickable"
             >
               Contact Me
             </button>
@@ -156,7 +169,7 @@ export default function Hero() {
                 href={personalInfo.socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full glass-panel border border-white/5 flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-none clickable"
+                className="w-11 h-11 rounded-full glass-panel border border-[var(--border-subtle)] flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-none clickable"
                 aria-label="GitHub"
               >
                 <FiGithub className="w-5 h-5" />
@@ -167,7 +180,7 @@ export default function Hero() {
                 href={personalInfo.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full glass-panel border border-white/5 flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-none clickable"
+                className="w-11 h-11 rounded-full glass-panel border border-[var(--border-subtle)] flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-none clickable"
                 aria-label="LinkedIn"
               >
                 <FiLinkedin className="w-5 h-5" />
@@ -176,7 +189,7 @@ export default function Hero() {
             {personalInfo.socialLinks.email && (
               <a
                 href={`mailto:${personalInfo.socialLinks.email}`}
-                className="w-11 h-11 rounded-full glass-panel border border-white/5 flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-none clickable"
+                className="w-11 h-11 rounded-full glass-panel border border-[var(--border-subtle)] flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 cursor-none clickable"
                 aria-label="Email"
               >
                 <FiMail className="w-5 h-5" />
@@ -189,4 +202,3 @@ export default function Hero() {
     </section>
   );
 }
-

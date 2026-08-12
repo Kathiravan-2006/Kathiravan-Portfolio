@@ -32,7 +32,7 @@ export default function Skills() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4"
+            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4 text-text-primary"
           >
             Technical <span className="text-gradient">Capabilities</span>
           </motion.h2>
@@ -61,7 +61,7 @@ export default function Skills() {
                   className={`flex items-center gap-3.5 px-5 py-4 rounded-xl border font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 whitespace-nowrap cursor-none clickable w-full ${
                     isActive
                       ? 'bg-gradient-to-r from-accent-blue/15 via-accent-cyan/15 to-accent-purple/15 border-accent-cyan/40 text-accent-cyan shadow-[0_0_15px_rgba(6,182,212,0.1)]'
-                      : 'bg-white/5 border-white/5 text-text-secondary hover:text-white hover:bg-white/10 hover:border-white/10'
+                      : 'glass-panel-light border-[var(--border-subtle)] text-text-secondary hover:text-text-primary hover:border-accent-cyan/20'
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? 'text-accent-cyan' : 'text-text-secondary'}`} />
@@ -72,7 +72,7 @@ export default function Skills() {
           </div>
 
           {/* Right Skills Grid Box */}
-          <div className="lg:col-span-8 glass-panel p-8 rounded-3xl border border-white/10 min-h-[380px] relative overflow-hidden">
+          <div className="lg:col-span-8 glass-panel p-8 rounded-3xl border border-[var(--border-glass)] min-h-[380px] relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-purple animate-border-glow" />
             
             <AnimatePresence mode="wait">
@@ -89,15 +89,15 @@ export default function Skills() {
                   return (
                     <div 
                       key={skill.name}
-                      className="glass-panel-light p-5 rounded-2xl border border-white/5 hover:border-white/10 hover:shadow-[0_4px_20px_rgba(255,255,255,0.02)] transition-all duration-300 flex flex-col justify-between group"
+                      className="glass-panel-light p-5 rounded-2xl border border-[var(--border-subtle)] hover:border-[var(--border-glass)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all duration-300 flex flex-col justify-between group"
                     >
                       {/* Name & Icon header */}
                       <div className="flex items-center justify-between mb-4">
                         <div className="flex items-center gap-3">
-                          <div className={`p-2 bg-white/5 rounded-lg group-hover:bg-white/10 transition-colors duration-300`}>
+                          <div className={`p-2 bg-[var(--border-subtle)] rounded-lg transition-colors duration-300`}>
                             <Icon className={`w-5 h-5 ${skill.color}`} />
                           </div>
-                          <span className="font-heading font-semibold text-sm tracking-wide text-white group-hover:text-accent-cyan transition-colors duration-300">
+                          <span className="font-heading font-semibold text-sm tracking-wide text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
                             {skill.name}
                           </span>
                         </div>
@@ -107,7 +107,7 @@ export default function Skills() {
                       </div>
 
                       {/* Animated level indicator */}
-                      <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden relative">
+                      <div className="w-full h-1.5 bg-[var(--border-subtle)] rounded-full overflow-hidden relative">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${skill.level}%` }}
@@ -126,4 +126,3 @@ export default function Skills() {
     </section>
   );
 }
-

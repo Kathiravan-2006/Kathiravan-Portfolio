@@ -42,7 +42,7 @@ function Counter({ to, duration = 1.5 }) {
 
 export default function Achievements() {
   return (
-    <section id="achievements" className="py-24 relative overflow-hidden bg-space-black/50">
+    <section id="achievements" className="py-24 relative overflow-hidden">
       {/* Background glow highlights */}
       <div className="absolute top-[20%] right-[-10%] w-[350px] h-[350px] bg-accent-purple/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] left-[-10%] w-[350px] h-[350px] bg-accent-cyan/5 rounded-full blur-[100px] pointer-events-none" />
@@ -59,17 +59,17 @@ export default function Achievements() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="glass-panel p-6 rounded-2xl border border-white/5 glow-card text-center flex flex-col items-center justify-center hover:border-white/10"
+                className="glass-panel p-6 rounded-2xl border border-[var(--border-subtle)] glow-card text-center flex flex-col items-center justify-center hover:border-[var(--border-glass)]"
               >
                 {/* Icon box */}
-                <div className="w-12 h-12 rounded-xl p-[1px] flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(255,255,255,0.02)]">
-                  <div className="w-full h-full bg-space-black rounded-xl flex items-center justify-center border border-white/10">
-                    <Icon className="w-5 h-5 text-white" />
+                <div className="w-12 h-12 rounded-xl p-[1px] flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+                  <div className="w-full h-full bg-[var(--icon-box-bg)] rounded-xl flex items-center justify-center border border-[var(--border-glass)]">
+                    <Icon className="w-5 h-5 text-text-primary" />
                   </div>
                 </div>
 
                 {/* Counter */}
-                <h3 className="font-heading font-black text-3xl md:text-4xl text-white mb-2 tracking-tight select-none">
+                <h3 className="font-heading font-black text-3xl md:text-4xl text-text-primary mb-2 tracking-tight select-none">
                   <Counter to={stat.value} />
                   <span className="text-gradient-cyan-purple">{stat.suffix}</span>
                 </h3>
@@ -86,4 +86,3 @@ export default function Achievements() {
     </section>
   );
 }
-

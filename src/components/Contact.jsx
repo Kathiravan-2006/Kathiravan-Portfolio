@@ -87,7 +87,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4"
+            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4 text-text-primary"
           >
             Get In <span className="text-gradient">Touch</span>
           </motion.h2>
@@ -112,9 +112,9 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 flex flex-col justify-between space-y-8"
           >
-            <div className="glass-panel p-8 rounded-3xl border border-white/8 h-full flex flex-col justify-between">
+            <div className="glass-panel p-8 rounded-3xl border border-[var(--border-glass)] h-full flex flex-col justify-between">
               <div>
-                <h3 className="font-heading font-bold text-xl text-white mb-4">
+                <h3 className="font-heading font-bold text-xl text-text-primary mb-4">
                   {contactData.connectTitle}
                 </h3>
                 <p className="font-sans text-xs md:text-sm text-text-secondary leading-relaxed mb-8">
@@ -128,8 +128,8 @@ export default function Contact() {
                       href={`mailto:${contactData.email}`}
                       className="flex items-center gap-4 text-text-secondary hover:text-accent-cyan transition-colors duration-300 font-sans text-xs group cursor-none clickable"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 group-hover:border-accent-cyan/20 group-hover:bg-white/10 flex items-center justify-center transition-all duration-300">
-                        <FiMail className="w-4 h-4 text-white group-hover:text-accent-cyan transition-colors duration-300" />
+                      <div className="w-10 h-10 rounded-xl bg-[var(--icon-box-bg)] border border-[var(--border-subtle)] group-hover:border-accent-cyan/30 flex items-center justify-center transition-all duration-300">
+                        <FiMail className="w-4 h-4 text-text-primary group-hover:text-accent-cyan transition-colors duration-300" />
                       </div>
                       <span>{contactData.email}</span>
                     </a>
@@ -137,7 +137,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-white/5 mt-8">
+              <div className="pt-8 border-t border-[var(--border-subtle)] mt-8">
                 <h4 className="font-heading font-semibold text-[10px] text-text-secondary uppercase tracking-widest mb-4">
                   Social Channels
                 </h4>
@@ -147,7 +147,7 @@ export default function Contact() {
                       href={contactData.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-11 h-11 rounded-full glass-panel border border-white/5 flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 cursor-none clickable"
+                      className="w-11 h-11 rounded-full glass-panel border border-[var(--border-subtle)] flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 cursor-none clickable"
                       aria-label="GitHub"
                     >
                       <FiGithub className="w-4 h-4" />
@@ -158,7 +158,7 @@ export default function Contact() {
                       href={contactData.linkedinUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-11 h-11 rounded-full glass-panel border border-white/5 flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 cursor-none clickable"
+                      className="w-11 h-11 rounded-full glass-panel border border-[var(--border-subtle)] flex items-center justify-center text-text-secondary hover:text-accent-cyan hover:border-accent-cyan/30 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 cursor-none clickable"
                       aria-label="LinkedIn"
                     >
                       <FiLinkedin className="w-4 h-4" />
@@ -177,7 +177,7 @@ export default function Contact() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-7"
           >
-            <div className="glass-panel p-8 md:p-10 rounded-3xl border border-white/8 relative overflow-hidden">
+            <div className="glass-panel p-8 md:p-10 rounded-3xl border border-[var(--border-glass)] relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple" />
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -193,7 +193,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/5 focus:border-accent-cyan/40 text-white font-sans text-xs focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-accent-cyan text-text-primary font-sans text-xs focus:bg-[var(--bg-card)] focus:outline-none transition-all duration-300 placeholder:text-text-secondary/60"
                     disabled={status === 'sending' || status === 'success'}
                   />
                 </div>
@@ -210,7 +210,7 @@ export default function Contact() {
                     value={form.email}
                     onChange={handleChange}
                     placeholder="name@example.com"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/5 focus:border-accent-cyan/40 text-white font-sans text-xs focus:bg-white/[0.08] focus:outline-none transition-all duration-300"
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-accent-cyan text-text-primary font-sans text-xs focus:bg-[var(--bg-card)] focus:outline-none transition-all duration-300 placeholder:text-text-secondary/60"
                     disabled={status === 'sending' || status === 'success'}
                   />
                 </div>
@@ -227,7 +227,7 @@ export default function Contact() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Type your message here..."
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/5 focus:border-accent-cyan/40 text-white font-sans text-xs focus:bg-white/[0.08] focus:outline-none transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-accent-cyan text-text-primary font-sans text-xs focus:bg-[var(--bg-card)] focus:outline-none transition-all duration-300 resize-none placeholder:text-text-secondary/60"
                     disabled={status === 'sending' || status === 'success'}
                   />
                 </div>
@@ -285,4 +285,3 @@ export default function Contact() {
     </section>
   );
 }
-

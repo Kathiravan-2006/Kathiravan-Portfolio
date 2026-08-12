@@ -20,7 +20,7 @@ export default function Certificates() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4"
+            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4 text-text-primary"
           >
             Professional <span className="text-gradient">Certifications</span>
           </motion.h2>
@@ -44,12 +44,12 @@ export default function Certificates() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
-              className="glass-panel p-6 rounded-2xl border border-white/5 glow-card flex flex-col justify-between group hover:border-white/10"
+              className="glass-panel p-6 rounded-2xl border border-[var(--border-subtle)] glow-card flex flex-col justify-between group hover:border-[var(--border-glass)]"
             >
               <div>
                 {/* Header tag */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-2.5 py-0.8 rounded-md bg-white/5 border border-white/5 text-accent-cyan text-[10px] font-semibold tracking-wider uppercase">
+                  <span className="px-2.5 py-0.8 rounded-md glass-panel-light border border-[var(--border-subtle)] text-accent-cyan text-[10px] font-semibold tracking-wider uppercase">
                     {cert.category}
                   </span>
                   <span className="font-mono text-[10px] text-text-secondary">
@@ -57,7 +57,7 @@ export default function Certificates() {
                   </span>
                 </div>
 
-                <h3 className="font-heading font-bold text-base text-white mb-2 group-hover:text-accent-cyan transition-colors duration-300">
+                <h3 className="font-heading font-bold text-base text-text-primary mb-2 group-hover:text-accent-cyan transition-colors duration-300">
                   {cert.title}
                 </h3>
                 <p className="font-sans text-xs text-text-secondary font-medium mb-4">
@@ -72,7 +72,7 @@ export default function Certificates() {
               {/* View Action */}
               <button
                 onClick={() => setSelectedCert(cert)}
-                className="flex items-center justify-center gap-2 w-full py-2 rounded-xl bg-white/5 border border-white/5 hover:border-accent-cyan/35 text-white font-medium text-xs transition-all duration-300 hover:bg-white/10 cursor-none clickable"
+                className="flex items-center justify-center gap-2 w-full py-2 rounded-xl glass-panel-light border border-[var(--border-subtle)] hover:border-accent-cyan/35 text-text-primary font-medium text-xs transition-all duration-300 hover:bg-accent-cyan/5 cursor-none clickable"
               >
                 <FiAward className="w-4 h-4 text-accent-cyan" />
                 Inspect Certificate
@@ -89,7 +89,7 @@ export default function Certificates() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-space-black/90 backdrop-blur-md p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--modal-overlay)] backdrop-blur-md p-6"
             onClick={() => setSelectedCert(null)}
           >
             {/* Modal Box */}
@@ -98,7 +98,7 @@ export default function Certificates() {
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="glass-panel max-w-2xl w-full p-8 md:p-12 rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(6,182,212,0.2)] text-center relative overflow-hidden group select-none"
+              className="glass-panel max-w-2xl w-full p-8 md:p-12 rounded-3xl border border-[var(--border-glass)] shadow-[0_0_50px_rgba(6,182,212,0.2)] text-center relative overflow-hidden group select-none"
               onClick={(e) => e.stopPropagation()} // Prevent close on box click
             >
               {/* Top Neon glowing line */}
@@ -107,14 +107,14 @@ export default function Certificates() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedCert(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-white/5 border border-white/5 hover:border-accent-cyan/40 hover:bg-white/10 text-white transition-all duration-300 clickable cursor-none"
+                className="absolute top-6 right-6 p-2 rounded-full glass-panel-light border border-[var(--border-subtle)] hover:border-accent-cyan/40 text-text-primary transition-all duration-300 clickable cursor-none"
                 aria-label="Close details"
               >
                 <FiX className="w-4 h-4" />
               </button>
 
               {/* Certificate layout visual */}
-              <div className="border border-white/5 p-6 rounded-2xl bg-white/[0.02] flex flex-col items-center">
+              <div className="border border-[var(--border-subtle)] p-6 rounded-2xl glass-panel-light flex flex-col items-center">
                 <FiAward className="w-16 h-16 text-accent-cyan mb-4 animate-float" />
                 
                 <h4 className="font-heading font-black text-2xl md:text-3xl text-gradient-cyan-purple tracking-wide mb-2 uppercase">
@@ -125,23 +125,23 @@ export default function Certificates() {
                   This credential is proudly awarded to
                 </p>
 
-                <h5 className="font-heading font-black text-2xl text-white tracking-wider mb-6 uppercase">
+                <h5 className="font-heading font-black text-2xl text-text-primary tracking-wider mb-6 uppercase">
                   {personalInfo.name}
                 </h5>
 
                 <p className="font-sans text-xs text-text-secondary leading-relaxed max-w-md mb-8">
                   for successfully finishing all requirements and assessments for the course{' '}
-                  <strong className="text-white">"{selectedCert.title}"</strong>, offered and certified by{' '}
-                  <strong className="text-white">{selectedCert.issuer}</strong>.
+                  <strong className="text-text-primary">"{selectedCert.title}"</strong>, offered and certified by{' '}
+                  <strong className="text-text-primary">{selectedCert.issuer}</strong>.
                 </p>
 
                 {/* Foot Details */}
-                <div className="grid grid-cols-2 gap-8 border-t border-white/5 pt-6 w-full text-left font-mono">
+                <div className="grid grid-cols-2 gap-8 border-t border-[var(--border-subtle)] pt-6 w-full text-left font-mono">
                   <div>
                     <span className="block text-[9px] text-text-secondary/60 uppercase tracking-widest mb-1">
                       Credential ID
                     </span>
-                    <span className="text-xs text-white font-semibold flex items-center gap-1.5">
+                    <span className="text-xs text-text-primary font-semibold flex items-center gap-1.5">
                       <FiCheckCircle className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       {selectedCert.id}
                     </span>
@@ -150,7 +150,7 @@ export default function Certificates() {
                     <span className="block text-[9px] text-text-secondary/60 uppercase tracking-widest mb-1">
                       Release Date
                     </span>
-                    <span className="text-xs text-white font-semibold">
+                    <span className="text-xs text-text-primary font-semibold">
                       {selectedCert.date}
                     </span>
                   </div>
@@ -161,7 +161,7 @@ export default function Certificates() {
               <div className="mt-8 flex justify-center gap-4">
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="flex items-center gap-2 px-6 py-2.5 rounded-xl border border-white/10 hover:border-accent-cyan/35 text-white font-medium text-xs transition-all duration-300 hover:bg-white/5 cursor-none clickable"
+                  className="flex items-center gap-2 px-6 py-2.5 rounded-xl glass-panel-light border border-[var(--border-glass)] hover:border-accent-cyan/35 text-text-primary font-medium text-xs transition-all duration-300 hover:bg-accent-cyan/5 cursor-none clickable"
                 >
                   <FiMinimize2 className="w-4 h-4" />
                   Dismiss
@@ -190,4 +190,3 @@ export default function Certificates() {
     </section>
   );
 }
-

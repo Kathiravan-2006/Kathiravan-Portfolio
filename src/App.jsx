@@ -23,14 +23,14 @@ function SkeletonLoader() {
   return (
     <div className="w-full max-w-7xl mx-auto px-6 py-24 animate-pulse space-y-8 select-none">
       {/* Skeleton Title */}
-      <div className="h-8 bg-white/5 rounded-xl w-[200px] mx-auto border border-white/5" />
+      <div className="h-8 glass-panel-light rounded-xl w-[200px] mx-auto border border-[var(--border-subtle)]" />
       {/* Skeleton Subtext */}
-      <div className="h-4 bg-white/5 rounded-xl w-[320px] mx-auto border border-white/5" />
+      <div className="h-4 glass-panel-light rounded-xl w-[320px] mx-auto border border-[var(--border-subtle)]" />
       {/* Skeleton Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
-        <div className="h-56 bg-white/[0.02] border border-white/5 rounded-2xl" />
-        <div className="h-56 bg-white/[0.02] border border-white/5 rounded-2xl" />
-        <div className="h-56 bg-white/[0.02] border border-white/5 rounded-2xl" />
+        <div className="h-56 glass-panel-light border border-[var(--border-subtle)] rounded-2xl" />
+        <div className="h-56 glass-panel-light border border-[var(--border-subtle)] rounded-2xl" />
+        <div className="h-56 glass-panel-light border border-[var(--border-subtle)] rounded-2xl" />
       </div>
     </div>
   );

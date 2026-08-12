@@ -10,7 +10,7 @@ const ICON_MAP = {
 
 export default function Education() {
   return (
-    <section id="education" className="py-24 relative overflow-hidden bg-space-black/50">
+    <section id="education" className="py-24 relative overflow-hidden">
       {/* Background glow highlights */}
       <div className="absolute top-[30%] left-[-10%] w-[350px] h-[350px] bg-accent-purple/5 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-[20%] right-[-10%] w-[350px] h-[350px] bg-accent-cyan/5 rounded-full blur-[100px] pointer-events-none" />
@@ -23,7 +23,7 @@ export default function Education() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4"
+            className="font-heading font-black text-4xl md:text-5xl tracking-tight mb-4 text-text-primary"
           >
             Academic <span className="text-gradient">Timeline</span>
           </motion.h2>
@@ -58,19 +58,19 @@ export default function Education() {
                 >
                   {/* Glowing Node Icon */}
                   <div className="absolute left-1 md:left-5 top-1.5 w-8 h-8 rounded-xl bg-gradient-to-r from-accent-purple to-accent-cyan p-[1px] shadow-[0_0_15px_rgba(139,92,246,0.15)] group-hover:shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all duration-300 z-10 flex items-center justify-center">
-                    <div className="w-full h-full bg-space-black rounded-[11px] flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-white group-hover:text-accent-cyan transition-colors duration-300" />
+                    <div className="w-full h-full bg-[var(--color-space-black)] rounded-[11px] flex items-center justify-center">
+                      <Icon className="w-4 h-4 text-text-primary group-hover:text-accent-cyan transition-colors duration-300" />
                     </div>
                   </div>
 
                   {/* Content Container */}
-                  <div className="glass-panel p-6 md:p-8 rounded-2xl border border-white/5 glow-card relative overflow-hidden">
+                  <div className="glass-panel p-6 md:p-8 rounded-2xl border border-[var(--border-subtle)] glow-card relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-[2.5px] bg-gradient-to-r from-accent-purple via-accent-blue to-accent-cyan" />
 
                     {/* Degree and period */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                       <div>
-                        <h3 className="font-heading font-bold text-base md:text-lg text-white group-hover:text-accent-cyan transition-colors duration-300">
+                        <h3 className="font-heading font-bold text-base md:text-lg text-text-primary group-hover:text-accent-cyan transition-colors duration-300">
                           {edu.degree}
                         </h3>
                         <p className="font-sans text-xs text-accent-cyan font-medium">
@@ -84,7 +84,7 @@ export default function Education() {
                     </div>
 
                     {/* Grade indicator */}
-                    <div className="inline-block px-3 py-1 rounded-md bg-white/5 border border-white/5 text-accent-purple text-xs font-semibold mb-4 tracking-wider">
+                    <div className="inline-block px-3 py-1 rounded-md glass-panel-light border border-[var(--border-subtle)] text-accent-purple text-xs font-semibold mb-4 tracking-wider">
                       {edu.score}
                     </div>
 
@@ -110,4 +110,3 @@ export default function Education() {
     </section>
   );
 }
-

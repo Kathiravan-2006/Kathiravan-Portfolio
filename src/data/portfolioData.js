@@ -23,7 +23,7 @@ export const personalInfo = {
   description:
     'Full Stack & AI Engineer proficient in React, Node.js, Python, Django, MongoDB, and MERN applications. Passionate about building intelligent web applications, IoT solutions, and VR/AR experiences.',
   profileImage: profileImg,
-  resumeUrl: '/resume.pdf',
+  resumeUrl: '/resume/Kathiravan_SP_Resume.pdf',
   socialLinks: {
     github: 'https://github.com/Kathiravan-2006',
     linkedin: 'https://www.linkedin.com/in/kathiravan-s-p-908379328/',
@@ -130,7 +130,7 @@ export const projectsData = [
     id: 'wealthmind',
     title: 'WealthMind – AI-Powered Personal Finance Platform',
     img: leaveImg,
-    tech: ['React JS', 'TypeScript', 'Python', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'AI/LLM'],
+    tech: ['React JS', 'TypeScript', 'Python', 'FastAPI', 'PostgreSQL', 'AI/LLM'],
     problem:
       'Users struggle with budgeting, tracking expenses, fraud detection, and obtaining context-aware financial advice in real-time.',
     solution:
@@ -141,7 +141,7 @@ export const projectsData = [
       'Financial-health scoring & fraud detection',
       'Interactive React chat interface',
     ],
-    githubUrl: 'https://github.com/Kathiravan-2006',
+    githubUrl: 'https://github.com/Kathiravan-2006/WealthMind',
     liveUrl: null,
   },
   {
@@ -159,7 +159,7 @@ export const projectsData = [
       'Remote cycle monitoring & relays control',
       'Buzzer & LCD status alerts integration',
     ],
-    githubUrl: 'https://github.com/Kathiravan-2006',
+    githubUrl: 'https://github.com/jayasuriyajs3/lunex',
     liveUrl: null,
   },
   {
@@ -177,8 +177,8 @@ export const projectsData = [
       'Structured MongoDB database schemas',
       'Responsive administrative dashboard',
     ],
-    githubUrl: 'https://github.com/Kathiravan-2006',
-    liveUrl: null,
+    githubUrl: 'https://github.com/Kathiravan-2006/Employee-Management-System',
+    liveUrl: 'https://employee-management-system-beta-plum.vercel.app/',
   },
   {
     id: 'identicam',
@@ -231,7 +231,7 @@ export const experienceData = [
     role: 'Machine Learning & Open Source Contributor',
     company: 'Open Source Community',
     location: 'GitHub',
-    period: '2023 - Present',
+    period: '2024',
     points: [
       'Built Python scripts using NumPy, Pandas, and Scikit-Learn to automate dataset sanitization.',
       'Authored utility extensions for OpenCV frame processing, reducing latency in live camera streams.',
@@ -259,7 +259,7 @@ export const educationData = [
     degree: 'Higher Secondary Certificate (HSC)',
     institution: 'Oxford Matriculation Hr Sec School, Sivaganga',
     location: 'Sivaganga, Tamil Nadu, India',
-    period: '2022 - 2024',
+    period: '2023 - 2024',
     score: 'Percentage: 75.7%',
     details: [
       'Focused on Computer Science, Mathematics, Physics, and Chemistry.',
@@ -289,7 +289,7 @@ export const certificatesData = [
     date: '2026',
     syllabus:
       'Human-centered design principles, empathy mapping, prototyping, iterative solution testing, user experience optimization.',
-    verifyUrl: 'https://nptel.ac.in/',
+    verifyUrl: 'https://drive.google.com/file/d/1qv6yElY2oD_CYzBQYVYwFCpt90laCe9H/view',
   },
   {
     title: 'Code in Java Beginner Guide',
@@ -299,7 +299,7 @@ export const certificatesData = [
     date: '2025',
     syllabus:
       'Object Oriented Programming concepts, class hierarchies, interfaces, exception handling, and core Java syntax.',
-    verifyUrl: 'https://www.udemy.com/',
+    verifyUrl: 'https://www.udemy.com/certificate/UC-330ab502-291a-4842-816d-331bd4e0deb2/',
   },
   {
     title: 'SQL Beginners Class',
@@ -309,7 +309,7 @@ export const certificatesData = [
     date: '2025',
     syllabus:
       'Relational database design, SELECT queries, JOIN operations, data filtering, aggregation, and DDL/DML statements.',
-    verifyUrl: 'https://www.sololearn.com/',
+    verifyUrl: 'https://www.sololearn.com/en/certificates/CC-ZGWKPP92',
   },
 ];
 
