@@ -27,7 +27,7 @@ export const personalInfo = {
   socialLinks: {
     github: 'https://github.com/Kathiravan-2006',
     linkedin: 'https://www.linkedin.com/in/kathiravan-s-p-908379328/',
-    email: 'kathiravan.s.p2024cse@sece.ac.in',
+    email: 'kathirsp03@gmail.com',
     phone: '+917397061794',
   },
 };
@@ -398,7 +398,7 @@ export const contactData = {
   connectTitle: "Let's Connect",
   connectText:
     'Whether you are a recruiter looking for a full-stack MERN / AI engineer, an innovator seeking IoT & VR/AR solutions, or a fellow developer, feel free to get in touch.',
-  email: 'kathiravan.s.p2024cse@sece.ac.in',
+  email: 'kathirsp03@gmail.com',
   phone: '+917397061794',
   githubUrl: 'https://github.com/Kathiravan-2006',
   linkedinUrl: 'https://www.linkedin.com/in/kathiravan-s-p-908379328/',
