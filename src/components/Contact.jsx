@@ -16,61 +16,108 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      setErrorMessage('Please fill in all the input fields.');
+    
+    const trimmedName = form.name.trim();
+    const trimmedEmail = form.email.trim();
+    const trimmedMessage = form.message.trim();
+
+    // Field validations
+    if (!trimmedName) {
+      setErrorMessage('Please enter your name.');
       setStatus('error');
       return;
     }
 
-    // Basic email validation regex
+    if (!trimmedEmail) {
+      setErrorMessage('Please enter your email address.');
+      setStatus('error');
+      return;
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(form.email)) {
-      setErrorMessage('Please provide a valid email address.');
+    if (!emailRegex.test(trimmedEmail)) {
+      setErrorMessage('Please enter a valid email address.');
+      setStatus('error');
+      return;
+    }
+
+    if (!trimmedMessage) {
+      setErrorMessage('Please enter your message.');
       setStatus('error');
       return;
     }
 
     setStatus('sending');
+    setErrorMessage('');
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    // Formspree endpoint configuration (User's ID: xnpadeya)
+    const formspreeId = import.meta.env.VITE_FORMSPREE_FORM_ID || 'xnpadeya';
+    const emailjsServiceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const emailjsTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const emailjsPublicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
     try {
-      if (serviceId && templateId && publicKey) {
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            from_name: form.name,
-            from_email: form.email,
-            message: form.message,
+      if (formspreeId) {
+        const endpoint = formspreeId.startsWith('http')
+          ? formspreeId
+          : `https://formspree.io/f/${formspreeId}`;
+
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
           },
-          publicKey
+          body: JSON.stringify({
+            name: trimmedName,
+            email: trimmedEmail,
+            message: trimmedMessage,
+          }),
+        });
+
+        if (response.ok) {
+          triggerSuccess();
+        } else {
+          throw new Error('Formspree submission failed');
+        }
+      } else if (emailjsServiceId && emailjsTemplateId && emailjsPublicKey) {
+        await emailjs.send(
+          emailjsServiceId,
+          emailjsTemplateId,
+          {
+            from_name: trimmedName,
+            from_email: trimmedEmail,
+            message: trimmedMessage,
+          },
+          emailjsPublicKey
         );
+        triggerSuccess();
       } else {
-        // Fallback simulation delay for preview environments without env keys
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        // If neither service is configured, inform user cleanly
+        setErrorMessage('Form service not configured yet. Please set VITE_FORMSPREE_FORM_ID in environment variables.');
+        setStatus('error');
       }
-
-      // Trigger celebration confetti blast
-      confetti({
-        particleCount: 120,
-        spread: 80,
-        origin: { y: 0.6 },
-        colors: ['#3B82F6', '#06B6D4', '#8B5CF6'],
-      });
-
-      setStatus('success');
-      setForm({ name: '', email: '', message: '' });
-
-      // Reset back to idle status after 5s
-      setTimeout(() => setStatus('idle'), 5000);
     } catch (error) {
-      console.error('Email submission error:', error);
-      setErrorMessage('Could not send email automatically. Please feel free to email directly using the link on the left.');
+      console.error('Contact Form submission error:', error);
+      setErrorMessage('Unable to send the message. Please try again.');
       setStatus('error');
     }
+  };
+
+  const triggerSuccess = () => {
+    // Trigger celebration confetti blast
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.6 },
+      colors: ['#3B82F6', '#06B6D4', '#8B5CF6'],
+    });
+
+    setStatus('success');
+    setForm({ name: '', email: '', message: '' });
+
+    // Reset back to idle status after 6s
+    setTimeout(() => setStatus('idle'), 6000);
   };
 
   return (
@@ -180,55 +227,58 @@ export default function Contact() {
             <div className="glass-panel p-8 md:p-10 rounded-3xl border border-[var(--border-glass)] relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple" />
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block font-heading font-semibold text-[10px] text-text-secondary uppercase tracking-widest mb-2">
-                    Your Name
+                    Your Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
                     id="name"
                     name="name"
+                    required
                     value={form.name}
                     onChange={handleChange}
                     placeholder="Enter your name"
                     className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-accent-cyan text-text-primary font-sans text-xs focus:bg-[var(--bg-card)] focus:outline-none transition-all duration-300 placeholder:text-text-secondary/60"
-                    disabled={status === 'sending' || status === 'success'}
+                    disabled={status === 'sending'}
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block font-heading font-semibold text-[10px] text-text-secondary uppercase tracking-widest mb-2">
-                    Email Address
+                    Email Address <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
+                    required
                     value={form.email}
                     onChange={handleChange}
                     placeholder="name@example.com"
                     className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-accent-cyan text-text-primary font-sans text-xs focus:bg-[var(--bg-card)] focus:outline-none transition-all duration-300 placeholder:text-text-secondary/60"
-                    disabled={status === 'sending' || status === 'success'}
+                    disabled={status === 'sending'}
                   />
                 </div>
 
                 {/* Message */}
                 <div>
                   <label htmlFor="message" className="block font-heading font-semibold text-[10px] text-text-secondary uppercase tracking-widest mb-2">
-                    Message Content
+                    Message Content <span className="text-red-400">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows="5"
+                    required
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Type your message here..."
                     className="w-full px-4 py-3 rounded-xl bg-[var(--input-bg)] border border-[var(--input-border)] focus:border-accent-cyan text-text-primary font-sans text-xs focus:bg-[var(--bg-card)] focus:outline-none transition-all duration-300 resize-none placeholder:text-text-secondary/60"
-                    disabled={status === 'sending' || status === 'success'}
+                    disabled={status === 'sending'}
                   />
                 </div>
 
@@ -254,7 +304,7 @@ export default function Contact() {
                       className="flex items-center gap-2 p-3.5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 font-sans text-xs"
                     >
                       <FiCheckCircle className="w-4 h-4 shrink-0 animate-pulse" />
-                      <span>Your message has been sent successfully! Thank you.</span>
+                      <span>Message sent successfully! I'll get back to you soon.</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -262,7 +312,7 @@ export default function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={status === 'sending' || status === 'success'}
+                  disabled={status === 'sending'}
                   className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple hover:shadow-[0_4px_20px_rgba(6,182,212,0.25)] text-white font-semibold text-xs transition-all duration-300 hover:scale-[1.01] active:scale-95 disabled:scale-100 disabled:opacity-50 disabled:shadow-none cursor-none clickable"
                 >
                   {status === 'sending' ? (
